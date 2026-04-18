@@ -6,32 +6,31 @@
     <title>Розрахунок витрати палива</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
         body { font-family: 'Inter', system-ui, sans-serif; }
         .input-focus:focus {
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25);
             transform: translateY(-1px);
+            outline: none;
         }
         .road-card:hover { transform: translateY(-2px); }
     </style>
 </head>
 <body class="bg-gradient-to-br from-slate-100 to-slate-200 min-h-screen py-8">
-    <div class="max-w-6xl mx-auto px-4">
+    <div class="max-w-7xl mx-auto px-4">
         <h1 class="text-center text-4xl font-bold text-slate-900 mb-10">Розрахунок витрати палива</h1>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-            
-            <div class="lg:col-span-7 bg-white rounded-3xl shadow-2xl p-8">
-                
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-8">
+            <div class="xl:col-span-7 bg-white rounded-3xl shadow-2xl p-8">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                     <div>
                         <label class="block text-slate-700 font-semibold mb-2">Базова витрата (л/100 км)</label>
-                        <input type="number" id="a" value="10" step="0.1" 
+                        <input type="number" id="base_rate" value="10" step="0.1"
                                class="input-focus w-full bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-2xl px-6 py-5 text-3xl font-semibold">
                     </div>
                     <div>
                         <label class="block text-slate-700 font-semibold mb-2">Тоннаж вантажу (т)</label>
-                        <input type="number" id="tons" value="5" step="0.1" 
+                        <input type="number" id="tons" value="5" step="0.1"
                                class="input-focus w-full bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-2xl px-6 py-5 text-3xl font-semibold">
                     </div>
                 </div>
@@ -40,30 +39,42 @@
                     <div class="road-card bg-gradient-to-r from-emerald-50 to-white border border-emerald-100 rounded-3xl p-6">
                         <h3 class="font-bold text-2xl mb-1">Заміські дороги <span class="text-emerald-600">-15%</span></h3>
                         <div class="grid grid-cols-2 gap-4">
-                            <div><label class="text-sm text-slate-500 block mb-1">З вантажем (км)</label>
-                                <input type="number" id="zam_load" value="70" class="input-focus w-full bg-white border border-emerald-200 focus:border-emerald-500 rounded-2xl px-5 py-4 text-xl"></div>
-                            <div><label class="text-sm text-slate-500 block mb-1">Без вантажу (км)</label>
-                                <input type="number" id="zam_no" value="70" class="input-focus w-full bg-white border border-emerald-200 focus:border-emerald-500 rounded-2xl px-5 py-4 text-xl"></div>
+                            <div>
+                                <label class="text-sm text-slate-500 block mb-1">З вантажем (км)</label>
+                                <input type="number" id="zam_load" value="70" class="input-focus w-full bg-white border border-emerald-200 focus:border-emerald-500 rounded-2xl px-5 py-4 text-xl">
+                            </div>
+                            <div>
+                                <label class="text-sm text-slate-500 block mb-1">Без вантажу (км)</label>
+                                <input type="number" id="zam_no" value="70" class="input-focus w-full bg-white border border-emerald-200 focus:border-emerald-500 rounded-2xl px-5 py-4 text-xl">
+                            </div>
                         </div>
                     </div>
 
                     <div class="road-card bg-gradient-to-r from-amber-50 to-white border border-amber-100 rounded-3xl p-6">
                         <h3 class="font-bold text-2xl mb-1">Рух в місті <span class="text-amber-600">+10%</span></h3>
                         <div class="grid grid-cols-2 gap-4">
-                            <div><label class="text-sm text-slate-500 block mb-1">З вантажем (км)</label>
-                                <input type="number" id="city_load" value="17" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl"></div>
-                            <div><label class="text-sm text-slate-500 block mb-1">Без вантажу (км)</label>
-                                <input type="number" id="city_no" value="18" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl"></div>
+                            <div>
+                                <label class="text-sm text-slate-500 block mb-1">З вантажем (км)</label>
+                                <input type="number" id="city_load" value="17" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl">
+                            </div>
+                            <div>
+                                <label class="text-sm text-slate-500 block mb-1">Без вантажу (км)</label>
+                                <input type="number" id="city_no" value="18" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl">
+                            </div>
                         </div>
                     </div>
 
                     <div class="road-card bg-gradient-to-r from-rose-50 to-white border border-rose-100 rounded-3xl p-6">
                         <h3 class="font-bold text-2xl mb-1">Понижені передачі <span class="text-rose-600">+10%</span></h3>
                         <div class="grid grid-cols-2 gap-4">
-                            <div><label class="text-sm text-slate-500 block mb-1">З вантажем (км)</label>
-                                <input type="number" id="low_load" value="91" class="input-focus w-full bg-white border border-rose-200 focus:border-rose-500 rounded-2xl px-5 py-4 text-xl"></div>
-                            <div><label class="text-sm text-slate-500 block mb-1">Без вантажу (км)</label>
-                                <input type="number" id="low_no" value="90" class="input-focus w-full bg-white border border-rose-200 focus:border-rose-500 rounded-2xl px-5 py-4 text-xl"></div>
+                            <div>
+                                <label class="text-sm text-slate-500 block mb-1">З вантажем (км)</label>
+                                <input type="number" id="low_load" value="91" class="input-focus w-full bg-white border border-rose-200 focus:border-rose-500 rounded-2xl px-5 py-4 text-xl">
+                            </div>
+                            <div>
+                                <label class="text-sm text-slate-500 block mb-1">Без вантажу (км)</label>
+                                <input type="number" id="low_no" value="90" class="input-focus w-full bg-white border border-rose-200 focus:border-rose-500 rounded-2xl px-5 py-4 text-xl">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -71,56 +82,62 @@
                 <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-slate-700 font-semibold mb-2">Мотогодини (м/г)</label>
-                        <input type="number" id="g" value="1" class="input-focus w-full bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-2xl px-6 py-5 text-3xl font-semibold">
+                        <input type="number" id="hours" value="1" step="0.1"
+                               class="input-focus w-full bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-2xl px-6 py-5 text-3xl font-semibold">
                     </div>
                     <div class="flex items-center pt-8">
                         <label class="flex items-center gap-x-3 cursor-pointer">
                             <input type="checkbox" id="ac" checked class="w-6 h-6 accent-blue-600">
                             <div>
-                                <span class="font-semibold">Кондиціонер увімкнено</span>
-                                <p class="text-sm text-slate-500">+4% від загальної витрати (після округлення до цілих л)</p>
+                                <span class="font-semibold">Кондиціонер</span>
+                                <p class="text-sm text-slate-500">4% від округленої загальної витрати</p>
                             </div>
                         </label>
                     </div>
                 </div>
 
-                <button onclick="calculateFuel()" 
-                        class="mt-10 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-bold text-2xl py-7 rounded-3xl shadow-xl active:scale-95 transition-all">
-                    РОЗРАХУВАТИ
-                </button>
+                <div class="mt-6">
+                    <label class="flex items-center gap-x-3 cursor-pointer">
+                        <input type="checkbox" id="adblue_enabled" checked class="w-6 h-6 accent-blue-600">
+                        <div>
+                            <span class="font-semibold">ADBLUE</span>
+                            <p class="text-sm text-slate-500">4% від округленої загальної витрати</p>
+                        </div>
+                    </label>
+                </div>
             </div>
 
-            <div class="lg:col-span-5 space-y-6">
+            <div class="xl:col-span-5 space-y-6">
                 <div id="result" class="hidden bg-emerald-600 text-white rounded-3xl p-10 shadow-2xl">
-                    <div class="text-emerald-100 text-sm">СПИСАНО ПАЛИВА</div>
-                    <div id="total-fuel" class="text-7xl font-bold mt-1">52</div>
+                    <div class="text-emerald-100 text-sm">ВСЬОГО ДО СПИСАННЯ</div>
+                    <div id="total-fuel" class="text-7xl font-bold mt-1">0</div>
                     <div class="text-3xl text-emerald-100">літрів</div>
-<div class="mt-4 space-y-2">
-<div>
-    <div class="text-emerald-100 text-sm">ПРОЙДЕНО ВСЬОГО</div>
-    <div id="total-km" class="text-3xl font-semibold">0 км</div>
-</div>
-<div class="grid grid-cols-2 gap-4 pt-2 border-t border-emerald-400/30">
-    <div>
-        <div class="text-emerald-100 text-xs">З вантажем</div>
-        <div id="total-km-load" class="text-2xl font-semibold">0 км</div>
-    </div>
-    <div>
-        <div class="text-emerald-100 text-xs">Без вантажу</div>
-        <div id="total-km-no" class="text-2xl font-semibold">0 км</div>
-    </div>
-</div>
-<div class="pt-2 border-t border-emerald-400/30">
-    <div class="text-emerald-100 text-sm">ФАКТИЧНА ВИТРАТА</div>
-    <div id="actual-consumption" class="text-3xl font-semibold">0 л/100 км</div>
-</div>
-</div>
 
+                    <div class="mt-4 space-y-2">
+                        <div>
+                            <div class="text-emerald-100 text-sm">ПРОЙДЕНО ВСЬОГО</div>
+                            <div id="total-km" class="text-3xl font-semibold">0 км</div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-4 pt-2 border-t border-emerald-400/30">
+                            <div>
+                                <div class="text-emerald-100 text-xs">З вантажем</div>
+                                <div id="total-km-load" class="text-2xl font-semibold">0 км</div>
+                            </div>
+                            <div>
+                                <div class="text-emerald-100 text-xs">Без вантажу</div>
+                                <div id="total-km-no" class="text-2xl font-semibold">0 км</div>
+                            </div>
+                        </div>
+                        <div class="pt-2 border-t border-emerald-400/30">
+                            <div class="text-emerald-100 text-sm">ФАКТИЧНА ВИТРАТА</div>
+                            <div id="actual-consumption" class="text-3xl font-semibold">0 л/100 км</div>
+                        </div>
+                    </div>
                 </div>
 
                 <div id="formula-card" class="hidden bg-white rounded-3xl shadow-xl p-8">
                     <h2 class="font-semibold text-xl mb-6 text-slate-700">Детальний розрахунок</h2>
-                    <div id="formula" class="space-y-4 text-sm"></div>
+                    <div id="formula" class="space-y-4 text-sm text-slate-700"></div>
                 </div>
             </div>
         </div>
@@ -128,136 +145,189 @@
 
     <script>
         function trunc1(val) {
-            return Math.floor(val * 10) / 10;
+            return Math.floor((val + 0.0000001) * 10) / 10;
         }
 
         function fmt1(val) {
-            return trunc1(val).toFixed(1).replace('.', ',');
+            const fixed = trunc1(val).toFixed(1);
+            return fixed.replace('.', ',');
+        }
+
+        function fmtInt(val) {
+            return String(Math.round(val)).replace('.', ',');
+        }
+
+        function safeNum(id) {
+            return parseFloat(document.getElementById(id).value) || 0;
+        }
+
+        function lineFuel(distance, rate100, coef) {
+            return trunc1((distance * rate100 / 100) * coef);
+        }
+
+        function setupInputUX() {
+            document.querySelectorAll('input[type="number"]').forEach(el => {
+                el.addEventListener('focus', function() {
+                    this.select();
+                });
+
+                el.addEventListener('pointerdown', function() {
+                    if (this.dataset.pointerHandled) return;
+                    this.dataset.pointerHandled = '1';
+                    setTimeout(() => {
+                        this.focus();
+                        this.select();
+                    }, 0);
+                    setTimeout(() => { delete this.dataset.pointerHandled; }, 50);
+                });
+            });
         }
 
         function calculateFuel() {
-            const a = parseFloat(document.getElementById('a').value) || 0;
-            const tons = parseFloat(document.getElementById('tons').value) || 0;
-            const g = parseFloat(document.getElementById('g').value) || 0;
+            const baseRate = safeNum('base_rate');
+            const tons = safeNum('tons');
+            const perTon = 1.3;
+            const hours = safeNum('hours');
+            const kmPerHour = 25;
             const acChecked = document.getElementById('ac').checked;
-            const extraPerTon = 1.3;
-            const loadedRate = a + (tons * extraPerTon);
+            const adblueChecked = document.getElementById('adblue_enabled').checked;
+
+            const extraLoadRate = tons * perTon;
+            const loadedRate = baseRate + extraLoadRate;
 
             const roads = [
-                { name: "Заміські дороги", coef: 0.85, coefLabel: "-15%", load: parseFloat(document.getElementById('zam_load').value)||0, no: parseFloat(document.getElementById('zam_no').value)||0, loadBg: 'bg-emerald-50 border-emerald-100', noBg: 'bg-slate-50 border-slate-100' },
-                { name: "Рух в місті", coef: 1.10, coefLabel: "+10%", load: parseFloat(document.getElementById('city_load').value)||0, no: parseFloat(document.getElementById('city_no').value)||0, loadBg: 'bg-amber-50 border-amber-100', noBg: 'bg-slate-50 border-slate-100' },
-                { name: "Понижені передачі", coef: 1.10, coefLabel: "+10%", load: parseFloat(document.getElementById('low_load').value)||0, no: parseFloat(document.getElementById('low_no').value)||0, loadBg: 'bg-rose-50 border-rose-100', noBg: 'bg-slate-50 border-slate-100' }
+                { name: "Заміські дороги", coef: 0.85, coefText: "-15%", load: safeNum('zam_load'), no: safeNum('zam_no') },
+                { name: "Рух в місті", coef: 1.10, coefText: "+10%", load: safeNum('city_load'), no: safeNum('city_no') },
+                { name: "Рух на понижених передачах", coef: 1.10, coefText: "+10%", load: safeNum('low_load'), no: safeNum('low_no') }
             ];
 
-            let totalLoad = 0;
-            let totalNoLoad = 0;
-            let html = `
-                <div class="bg-blue-50 border border-blue-100 rounded-2xl p-4 text-slate-700">
-                    <div><strong>Формула з вантажем:</strong> базова витрата + (тоннаж × 1,3)</div>
-                    <div class="mt-1">${a} + (${tons} × 1,3) = <strong>${loadedRate.toFixed(1).replace('.', ',')} л/100 км</strong></div>
-                </div>`;
+            let totalLoaded = 0;
+            let totalEmpty = 0;
+            let totalKmLoad = 0;
+            let totalKmNo = 0;
+            let html = '';
+
+            html += `
+                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                    <div><b>Базова витрата:</b> ${fmt1(baseRate)} л/100 км</div>
+                    <div><b>Тоннаж:</b> ${fmt1(tons)} т</div>
+                    <div><b>Додатково від вантажу:</b> ${fmt1(extraLoadRate)} л</div>
+                    <div><b>Витрата з вантажем:</b> ${fmt1(loadedRate)} л/100 км</div>
+                </div>
+            `;
+
+            html += `<div class="pt-2 text-base font-bold text-slate-800">З вантажем</div>`;
 
             roads.forEach(r => {
                 if (r.load > 0) {
-                    const rawFuel = (r.load * loadedRate / 100) * r.coef;
-                    const fuel = trunc1(rawFuel);
-                    totalLoad += fuel;
-                    html += `<div class="${r.loadBg} border rounded-2xl p-4">
-                        <div class="font-semibold mb-1">${r.name} — з вантажем</div>
-                        <div class="text-slate-600 text-sm">${r.load} км × ${loadedRate.toFixed(1).replace('.', ',')} / 100 ${r.coefLabel}</div>
-                        <div class="font-bold text-lg mt-1">${fmt1(fuel)} л</div>
-                    </div>`;
+                    const fuel = lineFuel(r.load, loadedRate, r.coef);
+                    totalLoaded += fuel;
+                    totalKmLoad += r.load;
+
+                    html += `
+                        <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-4">
+                            <div class="font-semibold">${r.name}</div>
+                            <div>${fmt1(r.load)} км × (${fmt1(baseRate)} + (${fmt1(tons)} × 1,3)) / 100 ${r.coefText} = <b>${fmt1(fuel)} л</b></div>
+                        </div>
+                    `;
                 }
             });
+
+            totalLoaded = trunc1(totalLoaded);
+
+            html += `
+                <div class="bg-emerald-100 border border-emerald-200 rounded-2xl p-4 flex justify-between text-base">
+                    <span><b>Всього витрачено з вантажем</b></span>
+                    <span><b>${fmt1(totalLoaded)} л</b></span>
+                </div>
+            `;
+
+            html += `<div class="pt-4 text-base font-bold text-slate-800">Без вантажу</div>`;
 
             roads.forEach(r => {
                 if (r.no > 0) {
-                    const rawFuel = (r.no * a / 100) * r.coef;
-                    const fuel = trunc1(rawFuel);
-                    totalNoLoad += fuel;
-                    html += `<div class="${r.noBg} border rounded-2xl p-4">
-                        <div class="font-semibold mb-1">${r.name} — без вантажу</div>
-                        <div class="text-slate-600 text-sm">${r.no} км × ${a} / 100 ${r.coefLabel}</div>
-                        <div class="font-bold text-lg mt-1">${fmt1(fuel)} л</div>
-                    </div>`;
+                    const fuel = lineFuel(r.no, baseRate, r.coef);
+                    totalEmpty += fuel;
+                    totalKmNo += r.no;
+
+                    html += `
+                        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4">
+                            <div class="font-semibold">${r.name}</div>
+                            <div>${fmt1(r.no)} км × ${fmt1(baseRate)} / 100 ${r.coefText} = <b>${fmt1(fuel)} л</b></div>
+                        </div>
+                    `;
                 }
             });
 
-            let hoursFuel = 0;
-            if (g > 0) {
-                hoursFuel = trunc1(g * 25 * (a / 100));
-                html += `<div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-4">
-                    <div class="font-semibold mb-1">Мотогодини</div>
-                    <div class="text-slate-600 text-sm">${g} м/г × 25 км = ${(g * 25).toFixed(1).replace('.', ',')} км; ${(g * 25).toFixed(1).replace('.', ',')} × ${a} / 100</div>
-                    <div class="font-bold text-lg mt-1">${fmt1(hoursFuel)} л</div>
-                </div>`;
-            }
-
-            totalLoad = trunc1(totalLoad);
-            totalNoLoad = trunc1(totalNoLoad);
-            const subtotal = trunc1(totalLoad + totalNoLoad + hoursFuel);
-            const subtotalRounded = Math.round(subtotal);
+            totalEmpty = trunc1(totalEmpty);
 
             html += `
-                <div class="bg-emerald-50 border border-emerald-100 rounded-2xl p-4 flex justify-between text-lg">
-                    <span>Всього з вантажем</span>
-                    <span class="font-bold">${fmt1(totalLoad)} л</span>
+                <div class="bg-slate-100 border border-slate-200 rounded-2xl p-4 flex justify-between text-base">
+                    <span><b>Всього витрачено без вантажу</b></span>
+                    <span><b>${fmt1(totalEmpty)} л</b></span>
                 </div>
-                <div class="bg-slate-50 border border-slate-100 rounded-2xl p-4 flex justify-between text-lg">
-                    <span>Всього без вантажу</span>
-                    <span class="font-bold">${fmt1(totalNoLoad)} л</span>
-                </div>
-                <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-4 flex justify-between text-lg">
-                    <span>Загальна витрата до кондиціонера</span>
-                    <span class="font-bold">${fmt1(subtotal)} л → ${subtotalRounded} л</span>
-                </div>`;
+            `;
 
-            let acExtra = 0;
-            if (acChecked && subtotalRounded > 0) {
-                acExtra = trunc1(subtotalRounded * 0.04);
-                html += `<div class="bg-red-50 border border-red-100 rounded-2xl p-4">
-                    <div class="font-semibold mb-1">Кондиціонер</div>
-                    <div class="text-slate-600 text-sm">${subtotalRounded} × 4 / 100</div>
-                    <div class="font-bold text-lg mt-1 text-red-700">${fmt1(acExtra)} л</div>
-                </div>`;
+            let hoursFuel = 0;
+            let hoursKm = 0;
+
+            if (hours > 0) {
+                hoursKm = trunc1(hours * kmPerHour);
+                hoursFuel = trunc1(hoursKm * baseRate / 100);
+
+                html += `
+                    <div class="pt-4 text-base font-bold text-slate-800">Мотогодини</div>
+                    <div class="bg-indigo-50 border border-indigo-100 rounded-2xl p-4">
+                        <div>${fmt1(hours)} м/г × 25 км = ${fmt1(hoursKm)} км</div>
+                        <div>${fmt1(hoursKm)} км × ${fmt1(baseRate)} / 100 = <b>${fmt1(hoursFuel)} л</b></div>
+                    </div>
+                `;
             }
 
-            let totalKmLoad = 0;
-            let totalKmNo = 0;
-            roads.forEach(r => {
-                totalKmLoad += (r.load || 0);
-                totalKmNo += (r.no || 0);
-            });
-            const totalKm = trunc1(totalKmLoad + totalKmNo);
+            const totalRaw = trunc1(totalLoaded + totalEmpty + hoursFuel);
+            const totalRoundedBase = Math.round(totalRaw);
 
+            let acExtra = 0;
+            if (acChecked) acExtra = trunc1(totalRoundedBase * 4 / 100);
+
+            let adblueExtra = 0;
+            if (adblueChecked) adblueExtra = trunc1(totalRoundedBase * 4 / 100);
+
+            const totalToWriteOff = Math.round(totalRoundedBase + acExtra + adblueExtra);
+
+            const totalKm = trunc1(totalKmLoad + totalKmNo);
+            const actualConsumption = totalKm > 0 ? trunc1((totalToWriteOff / totalKm) * 100) : 0;
+
+            html += `
+                <div class="pt-4 text-base font-bold text-slate-800">Загальний підсумок</div>
+                <div class="bg-amber-50 border border-amber-100 rounded-2xl p-4">
+                    <div>${fmt1(totalLoaded)} + ${fmt1(totalEmpty)} + ${fmt1(hoursFuel)} = <b>${fmt1(totalRaw)} л</b></div>
+                    <div>Округлення загальної витрати: <b>${fmtInt(totalRoundedBase)} л</b></div>
+                    <div>Кондиціонер: ${fmtInt(totalRoundedBase)} × 4 / 100 = <b>${fmt1(acExtra)} л</b></div>
+                    <div>ADBLUE: ${fmtInt(totalRoundedBase)} × 4 / 100 = <b>${fmt1(adblueExtra)} л</b></div>
+                </div>
+                <div class="mt-4 pt-6 border-t text-2xl font-bold flex justify-between">
+                    <span class="text-slate-700">Всього до списання</span>
+                    <span class="text-emerald-600">${fmtInt(totalToWriteOff)} л</span>
+                </div>
+            `;
+
+            document.getElementById('result').classList.remove('hidden');
+            document.getElementById('formula-card').classList.remove('hidden');
+            document.getElementById('total-fuel').textContent = fmtInt(totalToWriteOff);
             document.getElementById('total-km-load').textContent = fmt1(totalKmLoad) + ' км';
             document.getElementById('total-km-no').textContent = fmt1(totalKmNo) + ' км';
             document.getElementById('total-km').textContent = fmt1(totalKm) + ' км';
-
-            const totalFuel = Math.round(subtotalRounded + acExtra);
-
-            document.getElementById('result').classList.remove('hidden');
-            document.getElementById('total-fuel').textContent = totalFuel;
-
-            const actualConsumption = totalKm > 0 ? trunc1((totalFuel / totalKm) * 100) : 0;
             document.getElementById('actual-consumption').textContent = fmt1(actualConsumption) + ' л/100 км';
-
-            document.getElementById('formula-card').classList.remove('hidden');
-            document.getElementById('formula').innerHTML = html + `
-                <div class="mt-8 pt-6 border-t text-2xl font-bold flex justify-between">
-                    <span class="text-slate-700">Всього до списання</span>
-                    <span class="text-emerald-600">${Number.isInteger(totalFuel) ? totalFuel : totalFuel.toFixed(1).replace('.', ',')} л</span>
-                </div>`;
+            document.getElementById('formula').innerHTML = html;
         }
 
         window.onload = () => {
             document.querySelectorAll('input').forEach(el => {
                 el.addEventListener('input', calculateFuel);
-                el.addEventListener('focus', function() {
-                    if (['10','5','70','17','91','18','90','1'].includes(this.value)) this.value = '';
-                });
+                el.addEventListener('change', calculateFuel);
             });
-            document.getElementById('ac').addEventListener('change', calculateFuel);
+            setupInputUX();
             calculateFuel();
         };
     </script>

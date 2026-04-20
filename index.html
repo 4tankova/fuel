@@ -109,7 +109,7 @@
                         <input type="checkbox" id="adblue_enabled" checked class="w-6 h-6 accent-blue-600">
                         <div>
                             <span class="font-semibold">ADBLUE</span>
-                            <p class="text-sm text-slate-500">4% від округленої загальної витрати</p>
+                            <p class="text-sm text-slate-500">4% від округленої загальної витрати, окремо від палива</p>
                         </div>
                     </label>
                 </div>
@@ -119,7 +119,13 @@
             <div class="xl:col-span-5 space-y-6">
                 <!-- Результат -->
                 <div id="result" class="hidden bg-emerald-600 text-white rounded-3xl p-10 shadow-2xl">
-                    <div class="text-emerald-100 text-sm">ВСЬОГО ДО СПИСАННЯ</div>
+                    <div class="mb-5 pb-4 border-b border-blue-300/30">
+                        <div class="text-blue-200 text-sm uppercase tracking-wide">ADBLUE</div>
+                        <div id="adblue-top" class="text-5xl font-bold mt-1 text-blue-300">0</div>
+                        <div class="text-2xl text-blue-200">літрів</div>
+                    </div>
+
+                    <div class="text-emerald-100 text-sm">ПАЛИВО ДО СПИСАННЯ</div>
                     <div id="total-fuel" class="text-7xl font-bold mt-1">0</div>
                     <div class="text-3xl text-emerald-100">літрів</div>
 
@@ -139,8 +145,9 @@
                             </div>
                         </div>
                         <div class="pt-2 border-t border-emerald-400/30">
-                            <div class="text-emerald-100 text-sm">ФАКТИЧНА ВИТРАТА</div>
+                            <div class="text-emerald-100 text-sm">ФАКТИЧНА ВИТРАТА ПАЛИВА</div>
                             <div id="actual-consumption" class="text-3xl font-semibold">0 л/100 км</div>
+                            <div class="text-xs text-emerald-100/80 mt-1">без урахування ADBLUE</div>
                         </div>
                     </div>
                 </div>
@@ -183,7 +190,14 @@
 
                     <div class="mt-6 text-center text-xs text-slate-500">
                         Номер карти mono:<br>
-                        <span class="font-mono bg-white px-3 py-1 rounded-lg select-all">4874 1000 2721 0973</span>
+                        <span class="font-mono bg-white px-3 py-1 rounded-lg select-all">4874 1000 2721 0973</span>
+                    </div>
+
+                    <div class="mt-6 text-center">
+                        <a href="mailto:renegatduk@gmail.com"
+                           class="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 px-6 rounded-2xl transition-all shadow-lg">
+                            ✉️ Написати розробнику
+                        </a>
                     </div>
                 </div>
             </div>
@@ -223,10 +237,6 @@
 
         function lineFuelRaw(distance, rate100, coef) {
             return (distance * rate100 / 100) * coef;
-        }
-
-        function lineFuelRounded(distance, rate100, coef) {
-            return round1(lineFuelRaw(distance, rate100, coef));
         }
 
         function setupInputUX() {
@@ -359,28 +369,30 @@
             let adblueExtra = 0;
             if (adblueChecked) adblueExtra = round1(totalRoundedBase * 4 / 100);
 
-            const totalToWriteOff = excelRound(totalRoundedBase + acExtra + adblueExtra, 0);
+            const fuelToWriteOff = excelRound(totalRoundedBase + acExtra, 0);
 
             const totalKm = round1(totalKmLoad + totalKmNo);
-            const actualConsumption = totalKm > 0 ? round1((totalToWriteOff / totalKm) * 100) : 0;
+            const actualConsumption = totalKm > 0 ? round1((fuelToWriteOff / totalKm) * 100) : 0;
 
             html += `
                 <div class="pt-4 text-base font-bold text-slate-800">Загальний підсумок</div>
-                <div class="bg-amber-50 border border-amber-100 rounded-2xl p-4">
+                <div class="bg-amber-50 border border-amber-100 rounded-2xl p-4 space-y-1">
                     <div>${fmt1(totalLoaded)} + ${fmt1(totalEmpty)} + ${fmt1(hoursFuel)} = <b>${fmt1(totalRaw)} л</b></div>
                     <div>Округлення загальної витрати: <b>${fmtInt(totalRoundedBase)} л</b></div>
                     <div>Кондиціонер: ${fmtInt(totalRoundedBase)} × 4 / 100 = <b>${fmt1(acExtra)} л</b></div>
-                    <div>ADBLUE: ${fmtInt(totalRoundedBase)} × 4 / 100 = <b>${fmt1(adblueExtra)} л</b></div>
+                    <div class="text-blue-600 font-semibold">ADBLUE: ${fmtInt(totalRoundedBase)} × 4 / 100 = <b>${fmt1(adblueExtra)} л</b></div>
                 </div>
                 <div class="mt-4 pt-6 border-t text-2xl font-bold flex justify-between">
-                    <span class="text-slate-700">Всього до списання</span>
-                    <span class="text-emerald-600">${fmtInt(totalToWriteOff)} л</span>
+                    <span class="text-slate-700">Паливо до списання</span>
+                    <span class="text-emerald-600">${fmtInt(fuelToWriteOff)} л</span>
                 </div>
             `;
 
             document.getElementById('result').classList.remove('hidden');
             document.getElementById('formula-card').classList.remove('hidden');
-            document.getElementById('total-fuel').textContent = fmtInt(totalToWriteOff);
+
+            document.getElementById('adblue-top').textContent = fmt1(adblueExtra);
+            document.getElementById('total-fuel').textContent = fmtInt(fuelToWriteOff);
             document.getElementById('total-km-load').textContent = fmt1(totalKmLoad) + ' км';
             document.getElementById('total-km-no').textContent = fmt1(totalKmNo) + ' км';
             document.getElementById('total-km').textContent = fmt1(totalKm) + ' км';

@@ -69,11 +69,11 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="text-sm text-slate-500 block mb-1">З вантажем (км)</label>
-                                <input type="number" id="city_load" value="0" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl">
+                                <input type="number" id="city_load" value="17" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl">
                             </div>
                             <div>
                                 <label class="text-sm text-slate-500 block mb-1">Без вантажу (км)</label>
-                                <input type="number" id="city_no" value="0" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl">
+                                <input type="number" id="city_no" value="18" class="input-focus w-full bg-white border border-amber-200 focus:border-amber-500 rounded-2xl px-5 py-4 text-xl">
                             </div>
                         </div>
                     </div>
@@ -129,7 +129,7 @@
                     <span class="text-6xl">🔒</span>
                     <h2 class="text-2xl font-bold mt-4 mb-2 text-rose-500">Доступ заблоковано</h2>
                     <p class="text-slate-300 text-sm leading-relaxed">
-                        Ви використали всі безкоштовні спроби розрахунку палива. Будь ласка, здійсніть активацію пристрою у блоці нижче.
+                        Ви використали всі безкоштовні сесії роботи з калькулятором. Будь ласка, здійсніть активацію пристрою у блоці нижче.
                     </p>
                 </div>
 
@@ -248,7 +248,7 @@
 
     <script>
         const MONETIZATION_CONFIG = {
-            maxFreeCalculations: 5, // Ліміт змін перед блокуванням
+            maxFreeSessions: 5, // Ліміт сесій перед блокуванням
             salt: "FUEL_SECRET_SALT_2025" 
         };
 
@@ -290,20 +290,22 @@
             return false;
         }
 
-        function getCalculationsCount() {
-            return parseInt(localStorage.getItem('fuel_calc_usage_count') || '0', 10);
+        function getSessionsCount() {
+            return parseInt(localStorage.getItem('fuel_calc_session_count') || '0', 10);
         }
 
-        // Збільшення лічильника при закінченні редагування полів (подія change)
-        function incrementUsage() {
+        // Реєстрація нової сесії при завантаженні (якщо це нова вкладка/вікно)
+        function registerSession() {
             if (isUnlocked()) return;
-            
-            let count = getCalculationsCount();
-            count++;
-            localStorage.setItem('fuel_calc_usage_count', count.toString());
-            
-            updateUIState();
-            checkAccess();
+
+            // Перевірка через sessionStorage запобігає нарахуванню сесії при звичайному перезавантаженні сторінки (F5) в тій самій вкладці
+            if (!sessionStorage.getItem('fuel_calc_session_registered')) {
+                sessionStorage.setItem('fuel_calc_session_registered', 'true');
+                
+                let count = getSessionsCount();
+                count++;
+                localStorage.setItem('fuel_calc_session_count', count.toString());
+            }
         }
 
         function checkAccess() {
@@ -314,8 +316,8 @@
                 return true;
             }
 
-            const count = getCalculationsCount();
-            if (count >= MONETIZATION_CONFIG.maxFreeCalculations) {
+            const count = getSessionsCount();
+            if (count >= MONETIZATION_CONFIG.maxFreeSessions) {
                 document.getElementById('paywall-lock-screen').classList.remove('hidden');
                 document.getElementById('result').classList.add('hidden');
                 document.getElementById('formula-card').classList.add('hidden');
@@ -348,18 +350,18 @@
                 document.getElementById('activation-success-ui').classList.remove('hidden');
                 document.getElementById('active-key-display').textContent = localStorage.getItem('fuel_calc_active_key') || generateValidKey(devId);
             } else {
-                const count = getCalculationsCount();
-                const remaining = Math.max(0, MONETIZATION_CONFIG.maxFreeCalculations - count);
+                const count = getSessionsCount();
+                const remaining = Math.max(0, MONETIZATION_CONFIG.maxFreeSessions - count);
                 
                 document.getElementById('activation-pending-ui').classList.remove('hidden');
                 document.getElementById('activation-success-ui').classList.add('hidden');
 
                 if (remaining > 0) {
                     badge.className = "inline-block bg-blue-100 text-blue-800 text-sm font-semibold px-4 py-1.5 rounded-full";
-                    badge.innerHTML = `Пробний режим: залишилося безкоштовних змін параметрів: ${remaining} з ${MONETIZATION_CONFIG.maxFreeCalculations}`;
+                    badge.innerHTML = `Пробний режим: залишилося безкоштовних сесій: ${remaining} з ${MONETIZATION_CONFIG.maxFreeSessions}`;
                 } else {
                     badge.className = "inline-block bg-rose-100 text-rose-800 text-sm font-semibold px-4 py-1.5 rounded-full";
-                    badge.innerHTML = "🚫 Безкоштовний ліміт вичерпано. Потрібна активація.";
+                    badge.innerHTML = "🚫 Безкоштовний ліміт сесій вичерпано. Потрібна активація.";
                 }
             }
         }
@@ -442,7 +444,6 @@
             });
         }
 
-        // --- ГОЛОВНИЙ РОЗРАХУНОК ---
         function calculateFuel() {
             if (!checkAccess()) return;
 
@@ -586,20 +587,19 @@
         }
 
         window.onload = () => {
+            registerSession(); // Реєструємо поточну сесію
             updateUIState();
             checkAccess();
 
             document.querySelectorAll('input').forEach(el => {
-                // Подія input оновлює цифри на екрані безкоштовно та миттєво
+                // Подія input оновлює цифри на екрані миттєво
                 el.addEventListener('input', () => {
                     if (checkAccess()) {
                         calculateFuel();
                     }
                 });
                 
-                // Подія change фіксує зміну, коли користувач завершив набір і натиснув в інше місце
                 el.addEventListener('change', () => {
-                    incrementUsage();
                     if (checkAccess()) {
                         calculateFuel();
                     }

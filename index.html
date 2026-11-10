@@ -6,7 +6,6 @@
 <meta name="theme-color" content="#0f766e">
 <title>Розрахунок витрати палива</title>
 <script>
-// Тему ставимо до відмальовки сторінки — без "спалаху" світлої теми
 (function(){try{var t=localStorage.getItem('fuel_calc_theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -47,7 +46,6 @@ button{cursor:pointer}
 a{color:inherit}
 .container{max-width:1240px;margin:0 auto;padding:clamp(14px,3vw,28px) clamp(12px,3vw,24px) 48px}
 
-/* ---------- Шапка ---------- */
 .top{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px;margin-bottom:var(--gap)}
 .brand{display:flex;align-items:center;gap:14px;min-width:0}
 .logo{width:50px;height:50px;flex-shrink:0;border-radius:16px;display:grid;place-items:center;font-size:24px;
@@ -74,7 +72,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 }
 @media(min-width:561px){.pill .lbl-short{display:none}}
 
-/* ---------- Сітка сторінки ---------- */
 .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap);align-items:start}
 @media(min-width:1080px){.layout{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}.side{position:sticky;top:16px}}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow);padding:clamp(16px,3vw,28px);min-width:0}
@@ -86,7 +83,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .section-title{flex-wrap:wrap;row-gap:2px}
 @media(max-width:560px){.tip{display:none}}
 
-/* ---------- Поля ---------- */
 .grid2{display:grid;grid-template-columns:minmax(0,1fr);gap:14px}
 @media(min-width:520px){.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .field{display:block;min-width:0}
@@ -101,7 +97,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .eq{flex-shrink:0;margin-right:8px;font-size:12px;font-weight:700;color:var(--primary);background:var(--primary-soft);padding:3px 7px;border-radius:8px;white-space:nowrap}
 .hint{font-size:12px;color:var(--muted);margin-top:6px;min-height:17px}
 
-/* ---------- Авто ---------- */
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
 .chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--border);background:var(--surface-2);border-radius:999px;
   padding:5px 5px 5px 12px;font-size:13px;font-weight:600;transition:all .15s;cursor:pointer;max-width:100%}
@@ -117,7 +112,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .veh-form input{flex:1;min-width:0;border:1.5px solid var(--border);background:var(--surface-2);border-radius:12px;padding:10px 12px;outline:none}
 .veh-form input:focus{border-color:var(--primary)}
 
-/* ---------- Сегментні перемикачі ---------- */
 .seg{display:inline-flex;background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:3px;gap:2px;flex-shrink:0}
 .seg label{position:relative;display:block}
 .seg input{position:absolute;opacity:0;pointer-events:none}
@@ -132,7 +126,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .fuel-row .seg small{font-weight:600;opacity:.75;margin-left:4px}
 @media(max-width:420px){.fuel-row{flex-direction:column;align-items:stretch}.fuel-row .seg{display:grid;grid-template-columns:1fr 1fr}.fuel-row .seg span{text-align:center}}
 
-/* ---------- Дороги ---------- */
 .roads{display:flex;flex-direction:column;gap:12px}
 .road{border-radius:18px;padding:14px 14px 14px 20px;border:1px solid var(--border);background:var(--surface-2);position:relative;overflow:hidden}
 .road::before{content:'';position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--c)}
@@ -146,7 +139,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .road-city{--c:var(--amber);--cs:var(--amber-soft)}
 .road-low{--c:var(--rose);--cs:var(--rose-soft)}
 
-/* ---------- Перемикачі ---------- */
 .switch{display:flex;align-items:center;gap:14px;cursor:pointer;padding:14px 16px;border:1px solid var(--border);border-radius:16px;background:var(--surface-2);height:100%;min-width:0}
 .switch input{appearance:none;-webkit-appearance:none;width:46px;height:28px;border-radius:999px;background:var(--border-strong);position:relative;flex-shrink:0;transition:background .2s;cursor:pointer;margin:0}
 .switch input::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:50%;background:#fff;transition:transform .2s;box-shadow:0 1px 3px rgba(0,0,0,.25)}
@@ -159,7 +151,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .balance-line b{white-space:nowrap;font-size:18px;font-variant-numeric:tabular-nums}
 .balance-line.neg{background:var(--rose-soft);border-color:transparent;color:var(--rose)}
 
-/* ---------- Кнопки ---------- */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:14px;padding:11px 16px;font-weight:600;font-size:14px;
   border:1px solid var(--border);background:var(--surface);transition:all .15s;text-decoration:none;line-height:1.2}
 .btn:hover{border-color:var(--primary);transform:translateY(-1px)}
@@ -172,7 +163,6 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .tip{font-size:12px;color:var(--muted);align-self:center}
 .tip kbd{font-family:inherit;font-weight:700;background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:1px 6px}
 
-/* ---------- Результат ---------- */
 .result{border-radius:var(--r);padding:clamp(18px,3vw,26px);color:#fff;position:relative;overflow:hidden;
   background:radial-gradient(500px 220px at 100% 0%,rgba(52,211,153,.35),transparent 60%),linear-gradient(145deg,#064e3b,#047857 55%,#059669);
   box-shadow:var(--shadow-lg)}
@@ -199,12 +189,10 @@ a.pill:hover,button.pill:hover{transform:translateY(-1px);box-shadow:var(--shado
 .result-actions .btn{flex-direction:column;gap:4px;padding:11px 4px;font-size:12px}
 .result-actions .btn span:first-child{font-size:18px}
 
-/* ---------- Блокування ---------- */
 .lock{text-align:center;border-radius:var(--r);padding:30px 22px;background:linear-gradient(160deg,#0f172a,#1e1b2e);color:#fff;border:1px solid rgba(244,63,94,.35);box-shadow:var(--shadow-lg)}
 .lock h2{color:#fb7185;margin:8px 0 6px;font-size:21px}
 .lock p{color:#cbd5e1;font-size:14px;margin:0 0 18px}
 
-/* ---------- Згортні картки ---------- */
 details.card{padding:0}
 details.card>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;font-weight:700;font-size:16px;padding:16px clamp(16px,3vw,24px);border-radius:var(--r)}
 details.card>summary::-webkit-details-marker{display:none}
@@ -214,7 +202,6 @@ details[open].card>summary .chev{transform:rotate(180deg)}
 details.card>.d-body{padding:0 clamp(16px,3vw,24px) clamp(16px,3vw,24px)}
 .state{font-size:12px;font-weight:700;padding:4px 10px;border-radius:999px;white-space:nowrap}
 
-/* ---------- Деталізація ---------- */
 .formula{display:flex;flex-direction:column;gap:8px;font-size:14px}
 .f-group{font-weight:700;font-size:13px;margin-top:8px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .f-box{border-radius:12px;padding:10px 14px;border:1px solid var(--border);background:var(--surface-2)}
@@ -229,7 +216,6 @@ details.card>.d-body{padding:0 clamp(16px,3vw,24px) clamp(16px,3vw,24px)}
 .f-total span:last-child{color:var(--green)}
 .f-blue{color:var(--primary);font-weight:600}
 
-/* ---------- Історія ---------- */
 .hsum{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px}
 .hsum div{background:var(--surface-2);border:1px solid var(--border);border-radius:12px;padding:8px 10px;min-width:0}
 .hsum small{display:block;font-size:11px;color:var(--muted);font-weight:600}
@@ -247,7 +233,6 @@ details.card>.d-body{padding:0 clamp(16px,3vw,24px) clamp(16px,3vw,24px)}
 .empty{color:var(--muted);font-size:14px;text-align:center;padding:14px;border:1px dashed var(--border);border-radius:14px}
 .h-tools{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
 
-/* ---------- Активація ---------- */
 .step{margin-bottom:18px}
 .step-k{font-size:11px;font-weight:800;color:var(--primary);text-transform:uppercase;letter-spacing:.07em;display:block;margin-bottom:8px}
 .pay{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
@@ -260,10 +245,19 @@ details.card>.d-body{padding:0 clamp(16px,3vw,24px) clamp(16px,3vw,24px)}
 .keyrow input{flex:1;min-width:0;text-align:center;font-family:ui-monospace,monospace;text-transform:uppercase;border:1.5px solid var(--border);background:var(--surface-2);border-radius:14px;padding:11px;outline:none}
 .keyrow input:focus{border-color:var(--primary)}
 .err{color:var(--rose);font-size:12px;margin:6px 0 0}
+.req{margin-top:10px}
+.req-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:8px}
+@media(max-width:420px){.req-grid{grid-template-columns:minmax(0,1fr)}}
+.inp{width:100%;min-width:0;border:1.5px solid var(--border);background:var(--surface-2);border-radius:12px;padding:10px 12px;outline:none}
+.inp:focus{border-color:var(--primary)}
+.btn-dark{width:100%;margin-top:10px;background:#1e293b;color:#fff;border-color:#1e293b}
+.req .btn-dark{margin-top:0}
+.btn-link{background:none!important;border:0!important;color:var(--muted)!important;padding:4px!important;margin-top:6px!important;font-size:12px;font-weight:600;text-decoration:underline}
+.ok-note{margin-top:10px;padding:10px 12px;border-radius:12px;background:var(--green-soft);color:var(--green);font-size:13px;font-weight:600}
+.btn:disabled{opacity:.6;cursor:wait;transform:none}
 
 .hidden{display:none!important}
 
-/* ---------- Мобільна панель результату ---------- */
 .mbar{position:fixed;left:12px;right:12px;bottom:calc(12px + env(safe-area-inset-bottom));z-index:40;display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:10px 16px;border-radius:18px;color:#fff;background:linear-gradient(135deg,#065f46,#059669);box-shadow:0 12px 30px rgba(5,80,60,.45);
   border:0;text-align:left;transform:translateY(160%);transition:transform .25s ease}
@@ -273,7 +267,6 @@ details.card>.d-body{padding:0 clamp(16px,3vw,24px) clamp(16px,3vw,24px)}
 .mbar .mb-side{text-align:right;font-size:13px;color:#d1fae5;font-variant-numeric:tabular-nums}
 @media(min-width:1080px){.mbar{display:none}}
 
-/* ---------- Сповіщення ---------- */
 .toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,20px);background:#0f172a;color:#fff;padding:12px 18px;border-radius:14px;
   font-size:14px;font-weight:600;box-shadow:var(--shadow-lg);opacity:0;pointer-events:none;transition:all .25s;z-index:60;max-width:calc(100% - 32px);text-align:center}
 .toast.show{opacity:1;transform:translate(-50%,0)}
@@ -282,7 +275,6 @@ details.card>.d-body{padding:0 clamp(16px,3vw,24px) clamp(16px,3vw,24px)}
 footer{text-align:center;color:var(--faint);font-size:12px;margin-top:26px}
 @media(max-width:1079px){footer{margin-bottom:70px}}
 
-/* ---------- Друкований звіт ---------- */
 #print-report{display:none}
 @media print{
   @page{size:A4 portrait;margin:12mm 12mm 14mm}
@@ -337,7 +329,6 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:26px}
   </header>
 
   <div class="layout">
-    <!-- ЛІВА КОЛОНКА: ФОРМА -->
     <main class="card form-col">
 
       <div class="section">
@@ -448,13 +439,12 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:26px}
       </div>
     </main>
 
-    <!-- ПРАВА КОЛОНКА -->
-    <aside class="side stack">
+       <aside class="side stack">
 
       <div id="paywall-lock-screen" class="lock hidden">
         <div style="font-size:48px">🔒</div>
-        <h2>Доступ заблоковано</h2>
-        <p>Безкоштовні сесії закінчились. Активуйте пристрій, щоб продовжити.</p>
+        <h2 id="lock-title">Доступ заблоковано</h2>
+        <p id="lock-text">Безкоштовні сесії закінчились. Активуйте пристрій, щоб продовжити.</p>
         <button type="button" class="btn btn-green" id="go-activate">Перейти до активації</button>
       </div>
 
@@ -510,27 +500,37 @@ footer{text-align:center;color:var(--faint);font-size:12px;margin-top:26px}
             </div>
           </div>
           <div class="step">
-            <span class="step-k">Крок 2. Надішліть код пристрою</span>
+            <span class="step-k">Крок 2. Надішліть запит</span>
             <div class="devbox">
               <div><div class="k">Код вашого пристрою</div><div id="device-id-text" class="v">------</div></div>
               <button type="button" class="btn btn-sm" id="copy-dev">📋 Копіювати</button>
             </div>
-            <a id="email-btn" href="mailto:renegatduk@gmail.com" class="btn" style="width:100%;margin-top:10px;background:#1e293b;color:#fff;border-color:#1e293b">✉️ Надіслати код розробнику</a>
+            <div id="req-form" class="req hidden">
+              <div class="req-grid">
+                <input type="text" id="req-name" class="inp" maxlength="60" autocomplete="name" placeholder="Ім’я / позивний">
+                <input type="text" id="req-contact" class="inp" maxlength="60" autocomplete="tel" placeholder="Телефон">
+              </div>
+              <button type="button" class="btn btn-dark" id="req-btn">📨 Надіслати запит на активацію</button>
+              <p class="hint">Після підтвердження оплати ліцензія увімкнеться сама — достатньо відкрити калькулятор з інтернетом.</p>
+            </div>
+            <div id="req-done" class="ok-note hidden">✅ Запит надіслано. Ліцензія увімкнеться автоматично після підтвердження оплати.</div>
+            <a id="email-btn" href="mailto:renegatduk@gmail.com" class="btn btn-dark">✉️ Надіслати код розробнику</a>
           </div>
           <div class="step" style="margin-bottom:0">
-            <span class="step-k">Крок 3. Введіть отриманий ключ</span>
+            <span class="step-k">Крок 3. Маєте ключ? Введіть його</span>
             <div class="keyrow">
-              <input type="text" id="activation-key" placeholder="KEY-XXXXXX" autocomplete="off" spellcheck="false">
+              <input type="text" id="activation-key" placeholder="FC-XXXX-XXXX-XXXX" autocomplete="off" spellcheck="false">
               <button type="button" class="btn btn-green" id="activate-btn">Активувати</button>
             </div>
             <p id="act-error" class="err hidden">❌ Невірний ключ активації для цього пристрою</p>
+            <p class="hint">Перевстановили додаток чи змінили телефон? Введіть свій ключ — ліцензія відновиться.</p>
           </div>
         </div>
       </details>
     </aside>
   </div>
 
-  <footer><span id="foot-lic"></span>Дані зберігаються лише на цьому пристрої</footer>
+  <footer><span id="foot-lic"></span>Розрахунки зберігаються лише на цьому пристрої. Для перевірки ліцензії передається код і модель пристрою.</footer>
 </div>
 
 <button type="button" class="mbar" id="mbar" aria-label="Показати результат">
@@ -576,18 +576,103 @@ const MONTHS = ['Січень','Лютий','Березень','Квітень',
 let currentVehicle = '';
 let lastResult = null;
 
-/* ---------- ЛІЦЕНЗУВАННЯ (сумісно з попередніми версіями) ---------- */
-function getDeviceId() {
-  let id = LS.get('fuel_calc_device_id');
-  if (!id) {
-    const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    let randomPart = "";
-    for (let i = 0; i < 4; i++) randomPart += chars.charAt(Math.floor(Math.random() * chars.length));
-    id = "UA-" + randomPart;
-    LS.set('fuel_calc_device_id', id);
+const LICENSE_SERVER = 'https://script.google.com/macros/s/AKfycbwWJ3plNJgz_WStYY4_zwICON16S3jrrsVRrbXz2tSlGfY7TKDsZZywRyPfdJy7UgDw/exec';
+const LICENSE_PUBLIC_KEY = `-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6hqvS6Utst+85cVXRXig
+2asH2ZWvMfdtcLPKMMcu2WE2tQqKgT/6wwica+Rxd2w6+K0d7hbqqeatN8ldUMgo
+WRv75sI9poO8y0prmaDxs2As25SWMD12r9MA8dOKvmn9YuB9KIFyeQk5sa5CrTyy
+IVsZh5XWgNSmbl5U2C8Ie8AuxjRJZvTJYXAeXqsBkHWU3l54pZCNSHBZv7JcdHaY
+ymosnUaO09s6TH8cxzNK2uQzMGNPTPup86CuqJlvAndqQ6aMpIOk6ReoYWmH1z8r
+RZD+6DSFPmNLyitxK6WcnQtxZfpyw/62FD7r5+ze+dj/vtPBOtBWyz+kDyoGK2FG
+zwIDAQAB
+-----END PUBLIC KEY-----`;
+const APP_VERSION = '2.1';
+const DEVICE_RE = /^UA-[A-Z0-9]{4}(-[A-Z0-9]{4})?$/;
+
+const LIC = { active: false, blocked: false, key: '', checkedAt: 0 };
+let DEVICE_ID = '';
+
+const IDB = {
+  _p: null,
+  open() {
+    if (!this._p) this._p = new Promise(resolve => {
+      try {
+        const req = indexedDB.open('fuel_calc', 1);
+        req.onupgradeneeded = () => req.result.createObjectStore('kv');
+        req.onsuccess = () => resolve(req.result);
+        req.onerror = () => resolve(null);
+        setTimeout(() => resolve(null), 1500);
+      } catch { resolve(null); }
+    });
+    return this._p;
+  },
+  async get(k) {
+    const db = await this.open();
+    if (!db) return null;
+    return new Promise(res => {
+      try { const r = db.transaction('kv').objectStore('kv').get(k); r.onsuccess = () => res(r.result ?? null); r.onerror = () => res(null); }
+      catch { res(null); }
+    });
+  },
+  async put(k, v) {
+    const db = await this.open();
+    if (!db) return;
+    return new Promise(res => {
+      try {
+        const tx = db.transaction('kv', 'readwrite');
+        v == null ? tx.objectStore('kv').delete(k) : tx.objectStore('kv').put(v, k);
+        tx.oncomplete = tx.onerror = tx.onabort = () => res();
+      } catch { res(); }
+    });
   }
-  return id;
+};
+const Cookie = {
+  get(k) { try { const m = document.cookie.match(new RegExp('(?:^|; )' + k + '=([^;]*)')); return m ? decodeURIComponent(m[1]) : null; } catch { return null; } },
+  set(k, v) { try { document.cookie = v == null ? `${k}=; max-age=0; path=/` : `${k}=${encodeURIComponent(v)}; max-age=315360000; path=/; SameSite=Lax`; } catch {} }
+};
+const STORE = { id: 'fuel_calc_device_id', lic: 'fuel_calc_license', key: 'fuel_calc_active_key', sess: 'fuel_calc_session_count' };
+
+async function persistGet(name) {
+  const k = STORE[name];
+  let v = LS.get(k);
+  if (v == null) v = Cookie.get('fc_' + name);
+  if (v == null) v = await IDB.get(k);
+  return v;
 }
+function persistSet(name, v) {
+  const k = STORE[name];
+  if (v == null) LS.del(k); else LS.set(k, v);
+  Cookie.set('fc_' + name, v);
+  IDB.put(k, v);
+}
+
+function newDeviceId() {
+  const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+  const rnd = n => {
+    let s = '';
+    const a = new Uint32Array(n);
+    try { crypto.getRandomValues(a); } catch { for (let i = 0; i < n; i++) a[i] = Math.random() * 4294967296; }
+    for (let i = 0; i < n; i++) s += chars[a[i] % chars.length];
+    return s;
+  };
+  return 'UA-' + rnd(4) + '-' + rnd(4);
+}
+
+async function restoreIdentity() {
+  let id = String((await persistGet('id')) || '').toUpperCase();
+  if (!DEVICE_RE.test(id)) id = newDeviceId();
+  DEVICE_ID = id;
+  persistSet('id', id);
+  for (const n of ['lic', 'key']) {
+    const v = await persistGet(n);
+    if (v != null) persistSet(n, v);
+  }
+  const s = [LS.get(STORE.sess), Cookie.get('fc_sess'), await IDB.get(STORE.sess)].map(x => parseInt(x, 10) || 0);
+  persistSet('sess', String(Math.max(...s)));
+  try { navigator.storage && navigator.storage.persist && navigator.storage.persist(); } catch {}
+}
+
+function getDeviceId() { return DEVICE_ID; }
 
 function generateValidKey(deviceId) {
   const combined = deviceId + MONETIZATION_CONFIG.salt;
@@ -599,13 +684,149 @@ function generateValidKey(deviceId) {
   return "KEY-" + Math.abs(hash).toString(16).toUpperCase();
 }
 
-function isUnlocked() {
-  const savedKey = LS.get('fuel_calc_active_key');
-  return !!savedKey && savedKey === generateValidKey(getDeviceId());
+function b64uToBytes(s) {
+  s = s.replace(/-/g, '+').replace(/_/g, '/');
+  while (s.length % 4) s += '=';
+  return Uint8Array.from(atob(s), c => c.charCodeAt(0));
+}
+let pubKeyP = null;
+function pubKey() {
+  if (!pubKeyP) {
+    const der = b64uToBytes(LICENSE_PUBLIC_KEY.replace(/-----[^-]+-----|\s/g, ''));
+    pubKeyP = crypto.subtle.importKey('spki', der, { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' }, false, ['verify']);
+  }
+  return pubKeyP;
+}
+async function verifyLic(lic) {
+  if (!lic || typeof lic !== 'object' || typeof lic.p !== 'string' || typeof lic.s !== 'string') return null;
+  let p;
+  try { p = JSON.parse(lic.p); } catch { return null; }
+  if (!p || p.d !== DEVICE_ID) return null;
+  if (!(window.crypto && crypto.subtle)) return p; 
+  try {
+    const ok = await crypto.subtle.verify('RSASSA-PKCS1-v1_5', await pubKey(), b64uToBytes(lic.s), new TextEncoder().encode(lic.p));
+    return ok ? p : null;
+  } catch { return null; }
+}
+
+async function loadLicense() {
+  LIC.active = false; LIC.blocked = false; LIC.key = '';
+  const lk = LS.get(STORE.key);
+  if (lk && lk === generateValidKey(DEVICE_ID)) { LIC.active = true; LIC.key = lk; }
+  const p = await verifyLic(LS.json(STORE.lic, null));
+  if (p) {
+    LIC.checkedAt = p.t || 0;
+    if (p.st === 'active') { LIC.active = true; LIC.key = p.k || LIC.key; }
+    else if (p.st === 'blocked') { LIC.active = false; LIC.blocked = true; }
+  }
+}
+
+async function applyLic(lic) {
+  const p = await verifyLic(lic);
+  if (!p) return false;
+  const wasA = LIC.active, wasB = LIC.blocked;
+  if (p.st === 'active') {
+    persistSet('lic', JSON.stringify(lic));
+    if (p.k) persistSet('key', p.k);
+    LIC.active = true; LIC.blocked = false; LIC.key = p.k || LIC.key;
+  } else if (p.st === 'blocked') {
+    persistSet('lic', JSON.stringify(lic));
+    LIC.active = false; LIC.blocked = true;
+  } else if (p.st === 'none' && LIC.blocked) {
+    persistSet('lic', null);
+    await loadLicense();
+  }
+  LIC.checkedAt = p.t || Date.now();
+  if (wasA !== LIC.active || wasB !== LIC.blocked) {
+    updateLicenseUI();
+    render();
+    if (LIC.active && !wasA) toast('✅ Ліцензію активовано. Дякуємо!');
+    if (LIC.blocked && !wasB) toast('⛔ Доступ до калькулятора заблоковано');
+  }
+  return true;
+}
+
+let infoP = null;
+function deviceInfo() {
+  if (infoP) return infoP;
+  infoP = (async () => {
+    const ua = navigator.userAgent || '';
+    let os = 'Інша', osFamily = 'other', model = '', m;
+    if ((m = ua.match(/Android\s?([\d.]*)/))) {
+      os = 'Android ' + (m[1] || ''); osFamily = 'android';
+      const mm = ua.match(/Android[^;)]*;\s*(?:[a-z]{2}[-_][a-zA-Z]{2};\s*)?([^;)]+?)(?:\s+Build\/[^;)]*)?[;)]/);
+      if (mm && mm[1] !== 'K' && !/^wv$/i.test(mm[1])) model = mm[1].trim();
+    } else if (/iPhone|iPad|iPod/.test(ua)) {
+      m = ua.match(/OS (\d+(?:_\d+)*)/); os = 'iOS ' + (m ? m[1].replace(/_/g, '.') : ''); osFamily = 'ios';
+      model = (ua.match(/iPhone|iPad|iPod/) || [''])[0];
+    } else if ((m = ua.match(/Windows NT ([\d.]+)/))) {
+      os = 'Windows ' + ({ '10.0': '10/11', '6.3': '8.1', '6.2': '8', '6.1': '7' }[m[1]] || m[1]); osFamily = 'windows'; model = 'ПК';
+    } else if (/Mac OS X/.test(ua)) { os = 'macOS'; osFamily = 'mac'; model = 'Mac'; }
+    else if (/Linux/.test(ua)) { os = 'Linux'; osFamily = 'linux'; model = 'ПК'; }
+    try {
+      if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+        const h = await navigator.userAgentData.getHighEntropyValues(['model', 'platformVersion']);
+        if (h.model) model = h.model;
+        if (osFamily === 'android' && h.platformVersion) os = 'Android ' + h.platformVersion.split('.')[0];
+      }
+    } catch {}
+    const isApk = /;\s*wv\)/.test(ua) || (/Android/.test(ua) && /Version\/[\d.]+/.test(ua) && /Chrome\//.test(ua));
+    const browser = /SamsungBrowser/.test(ua) ? 'Samsung Internet' : /Edg\//.test(ua) ? 'Edge' : /OPR\//.test(ua) ? 'Opera'
+      : /Firefox\//.test(ua) ? 'Firefox' : /Chrome\//.test(ua) ? 'Chrome' : /Safari\//.test(ua) ? 'Safari' : 'Браузер';
+    let tz = '';
+    try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ''; } catch {}
+    const sw = screen.width || 0, sh = screen.height || 0;
+    return {
+      model: model || '—', os, osFamily,
+      type: isApk ? 'Додаток (APK)' : browser,
+      screen: `${Math.min(sw, sh)}×${Math.max(sw, sh)}`,
+      lang: (navigator.language || '') + (tz ? ' / ' + tz : ''), tz
+    };
+  })();
+  return infoP;
+}
+
+async function fingerprint() {
+  const i = await deviceInfo();
+  const s = [i.model, i.osFamily, i.screen, window.devicePixelRatio, navigator.hardwareConcurrency, navigator.deviceMemory, i.tz].join('|');
+  let h = 0x811c9dc5;
+  for (let k = 0; k < s.length; k++) { h ^= s.charCodeAt(k); h = Math.imul(h, 0x01000193) >>> 0; }
+  return h.toString(16).padStart(8, '0').toUpperCase();
+}
+
+async function api(body) {
+  if (!LICENSE_SERVER) throw new Error('no-server');
+  const ctl = typeof AbortController !== 'undefined' ? new AbortController() : null;
+  const t = setTimeout(() => ctl && ctl.abort(), 15000);
+  try {
+      const r = await fetch(LICENSE_SERVER, { method: 'POST', body: JSON.stringify(body), signal: ctl ? ctl.signal : undefined, redirect: 'follow' });
+    return await r.json();
+  } finally { clearTimeout(t); }
+}
+async function basePayload(a) {
+  return { a, d: DEVICE_ID, v: APP_VERSION, info: await deviceInfo(), fp: await fingerprint(), sc: getSessionsCount() };
+}
+
+let pinging = false, lastPing = 0;
+async function ping(boot) {
+  if (!LICENSE_SERVER || pinging) return;
+  if (!boot && navigator.onLine === false) return;
+  pinging = true;
+  try {
+    const b = await basePayload('ping');
+    b.boot = !!boot;
+    const tok = LS.json(STORE.lic, null);
+    if (tok) b.tok = tok;
+    const lk = LS.get(STORE.key);
+    if (lk && lk === generateValidKey(DEVICE_ID)) b.lk = lk;
+    const res = await api(b);
+    lastPing = Date.now();
+    if (res && res.ok && res.lic) await applyLic(res.lic);
+  } catch {} finally { pinging = false; }
 }
 
 function getSessionsCount() {
-  return parseInt(LS.get('fuel_calc_session_count', '0'), 10) || 0;
+  return parseInt(LS.get(STORE.sess, '0'), 10) || 0;
 }
 
 function registerSession() {
@@ -614,11 +835,14 @@ function registerSession() {
   try { registered = !!sessionStorage.getItem('fuel_calc_session_registered'); } catch {}
   if (!registered) {
     try { sessionStorage.setItem('fuel_calc_session_registered', 'true'); } catch {}
-    LS.set('fuel_calc_session_count', String(getSessionsCount() + 1));
+    persistSet('sess', String(getSessionsCount() + 1));
   }
 }
 
+function isUnlocked() { return LIC.active && !LIC.blocked; }
+
 function hasAccess() {
+  if (LIC.blocked) return false;
   return isUnlocked() || getSessionsCount() < MONETIZATION_CONFIG.maxFreeSessions;
 }
 
@@ -626,6 +850,11 @@ function applyAccessUI() {
   const ok = hasAccess();
   $('paywall-lock-screen').classList.toggle('hidden', ok);
   $('result-wrap').classList.toggle('hidden', !ok);
+  $('lock-title').textContent = LIC.blocked ? 'Пристрій заблоковано' : 'Доступ заблоковано';
+  $('lock-text').textContent = LIC.blocked
+    ? 'Доступ до калькулятора на цьому пристрої закрито розробником. Зверніться у техпідтримку.'
+    : 'Безкоштовні сесії закінчились. Активуйте пристрій, щоб продовжити.';
+  $('go-activate').classList.toggle('hidden', LIC.blocked);
   return ok;
 }
 
@@ -635,18 +864,29 @@ function updateLicenseUI() {
   const subject = encodeURIComponent(`Активація калькулятора палива [${devId}]`);
   const body = encodeURIComponent(`Вітаю!\nМій код пристрою: ${devId}\nДодаю квитанцію про оплату для отримання ліцензійного ключа.`);
   $('email-btn').href = `mailto:renegatduk@gmail.com?subject=${subject}&body=${body}`;
+  $('req-form').classList.toggle('hidden', !LICENSE_SERVER);
+  $('email-btn').classList.toggle('btn-link', !!LICENSE_SERVER);
+  $('email-btn').textContent = LICENSE_SERVER ? 'або надіслати код на пошту' : '✉️ Надіслати код розробнику';
+  if (LS.get('fuel_calc_req_sent')) { $('req-form').classList.add('hidden'); $('req-done').classList.remove('hidden'); }
 
   const badge = $('trial-badge'), card = $('activation-card'), state = $('lic-state');
+  $('foot-lic').textContent = '';
+  if (LIC.blocked) {
+    badge.className = 'pill pill-bad';
+    badge.textContent = '⛔ Пристрій заблоковано';
+    badge.title = 'Зверніться у техпідтримку';
+    card.classList.add('hidden');
+    return;
+  }
   if (isUnlocked()) {
     badge.className = 'pill pill-ok';
     badge.textContent = '✓ Ліцензія активна';
     badge.title = 'Натисніть, щоб побачити ключ';
     card.classList.add('hidden');
-    $('foot-lic').textContent = `Ліцензія ${LS.get('fuel_calc_active_key')} · `;
+    $('foot-lic').textContent = `Ліцензія ${LIC.key} · Пристрій ${devId} · `;
     return;
   }
   card.classList.remove('hidden');
-  $('foot-lic').textContent = '';
   const remaining = Math.max(0, MONETIZATION_CONFIG.maxFreeSessions - getSessionsCount());
   if (remaining > 0) {
     badge.className = 'pill pill-info';
@@ -670,21 +910,69 @@ function openActivation() {
   setTimeout(() => $('activation-key').focus({ preventScroll: true }), 450);
 }
 
-function performActivation() {
-  const enteredKey = $('activation-key').value.trim().toUpperCase();
-  if (enteredKey && enteredKey === generateValidKey(getDeviceId())) {
-    LS.set('fuel_calc_unlocked', 'true');
-    LS.set('fuel_calc_active_key', enteredKey);
-    $('act-error').classList.add('hidden');
-    updateLicenseUI();
-    render();
-    toast('✅ Ліцензію активовано. Дякуємо!');
-  } else {
-    $('act-error').classList.remove('hidden');
+function actError(msg) {
+  const e = $('act-error');
+  e.textContent = '❌ ' + msg;
+  e.classList.remove('hidden');
+}
+
+async function performActivation() {
+  const key = $('activation-key').value.trim().toUpperCase().replace(/\s+/g, '');
+  if (!key) return actError('Введіть ключ активації');
+  $('act-error').classList.add('hidden');
+
+  if (key === generateValidKey(DEVICE_ID)) {
+    persistSet('key', key);
+    const was = LIC.active;
+    await loadLicense();
+    updateLicenseUI(); render();
+    if (LIC.blocked) return actError('Цей пристрій заблоковано. Зверніться до розробника.');
+    if (!was) toast('✅ Ліцензію активовано. Дякуємо!');
+    $('activation-key').value = '';
+    ping(false);
+    return;
+  }
+  if (!LICENSE_SERVER) return actError('Невірний ключ активації для цього пристрою');
+
+  const btn = $('activate-btn');
+  btn.disabled = true; btn.textContent = 'Перевірка…';
+  try {
+    const b = await basePayload('activate');
+    b.k = key;
+    const res = await api(b);
+    if (res && res.ok && res.lic && (await applyLic(res.lic)) && LIC.active) {
+      $('activation-key').value = '';
+    } else {
+      actError((res && res.err) || 'Не вдалося активувати. Спробуйте ще раз.');
+    }
+  } catch {
+    actError('Немає зв’язку з сервером. Перевірте інтернет і спробуйте ще раз.');
+  } finally {
+    btn.disabled = false; btn.textContent = 'Активувати';
   }
 }
 
-/* ---------- МАТЕМАТИКА (формула без змін) ---------- */
+async function sendRequest() {
+  const name = $('req-name').value.trim(), contact = $('req-contact').value.trim();
+  if (!name || !contact) { toast('Вкажіть ім’я та телефон'); (name ? $('req-contact') : $('req-name')).focus(); return; }
+  const btn = $('req-btn');
+  btn.disabled = true; btn.textContent = 'Надсилаю…';
+  try {
+    const b = await basePayload('request');
+    Object.assign(b, { name, contact });
+    const res = await api(b);
+    if (!res || !res.ok) throw new Error((res && res.err) || 'error');
+    LS.set('fuel_calc_req_sent', String(Date.now()));
+    $('req-form').classList.add('hidden');
+    $('req-done').classList.remove('hidden');
+    toast('📨 Запит надіслано');
+  } catch {
+    toast('Не вдалося надіслати. Перевірте інтернет або напишіть на пошту.');
+  } finally {
+    btn.disabled = false; btn.textContent = '📨 Надіслати запит на активацію';
+  }
+}
+
 function excelRound(val, digits = 0) {
   const factor = Math.pow(10, digits);
   return (val >= 0 ? 1 : -1) * Math.round(Math.abs(val) * factor + 1e-10) / factor;
@@ -697,8 +985,8 @@ function lineFuelRaw(distance, rate100, coef) { return (distance * rate100 / 100
 function compute(v) {
   const baseRate = v.base_rate;
   const tons = v.tons;
-  const perTon = v.perTon ?? 1.3;          // дизель 1,3 / бензин 2,0
-  const cityPct = v.cityPct ?? 10;         // 5 / 10 / 15 %
+  const perTon = v.perTon ?? 1.3;         
+  const cityPct = v.cityPct ?? 10;         
   const cityCoef = CITY_COEF[cityPct] ?? 1.10;
   const hours = v.hours;
   const kmPerHour = 25;
@@ -758,8 +1046,6 @@ function compute(v) {
     fuelToWriteOff, totalKmLoad, totalKmNo, totalKm, actualConsumption };
 }
 
-/* ---------- ВВЕДЕННЯ ---------- */
-// Підтримує одне число або суму рейсів: "12,5+30+8" або "100-20"
 function evalExpr(str) {
   const s = String(str).replace(/\s/g, '').replace(/,/g, '.');
   if (!s) return 0;
@@ -827,7 +1113,6 @@ function getBalance(r) {
   return { start, added, used: r ? r.fuelToWriteOff : 0, end: round1(start + added - (r ? r.fuelToWriteOff : 0)) };
 }
 
-/* ---------- ВІДОБРАЖЕННЯ ---------- */
 function esc(s) { return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
 
 function buildFormula(r) {
@@ -923,14 +1208,12 @@ function render() {
   updateMbar();
 }
 
-/* ---------- Мобільна панель результату ---------- */
 let resultVisible = true, inputFocused = false;
 function updateMbar() {
   const show = !!lastResult && !resultVisible && !inputFocused;
   $('mbar').classList.toggle('show', show);
 }
 
-/* ---------- ЗВІТ / ПОДІЛИТИСЯ ---------- */
 function nowStr(d = new Date()) {
   const p = n => String(n).padStart(2, '0');
   return `${p(d.getDate())}.${p(d.getMonth() + 1)}.${d.getFullYear()} ${p(d.getHours())}:${p(d.getMinutes())}`;
@@ -1055,7 +1338,6 @@ function toast(msg) {
   toastTimer = setTimeout(() => t.classList.remove('show'), 2400);
 }
 
-/* ---------- ІСТОРІЯ ---------- */
 const toNum = s => parseFloat(String(s || '0').replace(',', '.')) || 0;
 
 function renderHistory() {
@@ -1070,8 +1352,7 @@ function renderHistory() {
     return;
   }
 
-  // Підсумок за поточний місяць
-  const d = new Date();
+    const d = new Date();
   const key = String(d.getMonth() + 1).padStart(2, '0') + '.' + d.getFullYear();
   const month = list.filter(h => String(h.date).slice(3, 10) === key);
   if (month.length) {
@@ -1140,7 +1421,6 @@ function exportCsv() {
   toast('⬇️ Файл для Excel завантажено');
 }
 
-/* ---------- АВТО ---------- */
 function renderVehicles() {
   const list = LS.json(VEH_KEY, []);
   const box = $('vehicle-chips');
@@ -1191,14 +1471,12 @@ function saveVehicle() {
   toast(`🚚 «${name}» збережено`);
 }
 
-/* ---------- ТЕМА ---------- */
 function applyTheme(t) {
   document.documentElement.setAttribute('data-theme', t);
   document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#0b1120' : '#0f766e';
 }
 
-/* ---------- СТАРТ ---------- */
-function init() {
+async function init() {
   const savedTheme = LS.get(THEME_KEY) || (window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   applyTheme(savedTheme);
   $('theme-btn').addEventListener('click', () => {
@@ -1206,7 +1484,6 @@ function init() {
     applyTheme(t); LS.set(THEME_KEY, t);
   });
 
-  // Позначка "= сума" для полів з виразами
   ALL_NUM.forEach(id => {
     const el = $(id);
     const eq = document.createElement('span');
@@ -1214,6 +1491,8 @@ function init() {
     el.after(eq);
   });
 
+  await restoreIdentity();
+  await loadLicense();
   registerSession();
   updateLicenseUI();
   restore(LS.json(INPUTS_KEY, null));
@@ -1281,7 +1560,7 @@ function init() {
   $('veh-name').addEventListener('keydown', e => { if (e.key === 'Enter') saveVehicle(); if (e.key === 'Escape') $('veh-form').classList.remove('show'); });
 
   $('trial-badge').addEventListener('click', () => {
-    if (isUnlocked()) toast(`Ваш ключ: ${LS.get('fuel_calc_active_key')}`);
+    if (isUnlocked()) toast(`Ключ: ${LIC.key} · Пристрій: ${DEVICE_ID}`);
     else openActivation();
   });
   $('copy-dev').addEventListener('click', async () => {
@@ -1292,9 +1571,10 @@ function init() {
   $('activation-key').addEventListener('keydown', e => { if (e.key === 'Enter') performActivation(); });
   $('activation-key').addEventListener('input', () => $('act-error').classList.add('hidden'));
   $('go-activate').addEventListener('click', openActivation);
+  $('req-btn').addEventListener('click', sendRequest);
+  $('req-contact').addEventListener('keydown', e => { if (e.key === 'Enter') sendRequest(); });
 
-  // Мобільна панель: видно, коли картка результату за межами екрана
-  if ('IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window) {
     new IntersectionObserver(entries => { resultVisible = entries[0].isIntersecting; updateMbar(); }, { threshold: 0.15 }).observe($('result'));
   }
   document.addEventListener('focusin', e => { if (e.target.matches('input')) { inputFocused = true; updateMbar(); } });
@@ -1303,9 +1583,16 @@ function init() {
 
   renderHistory();
   render();
+
+    ping(true);
+  window.addEventListener('online', () => ping(false));
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'visible' && Date.now() - lastPing > 10 * 60 * 1000) ping(false);
+  });
+  setInterval(() => ping(false), 6 * 60 * 60 * 1000);
 }
 
-document.addEventListener('DOMContentLoaded', init);
+document.addEventListener('DOMContentLoaded', () => { init().catch(e => console.error(e)); });
 })();
 </script>
 </body>
